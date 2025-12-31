@@ -16,10 +16,17 @@ import StudyTools from './pages/resources/StudyTools';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import Payment from './pages/Payment';
+import TermsOfService from './pages/TermsOfService';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import CookiePolicy from './pages/CookiePolicy';
+import CornellNotes from './pages/resources/CornellNotes';
+
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
@@ -35,8 +42,12 @@ const App = () => {
           <Route path="resources/test-prep" element={<TestPrepResources />} />
           <Route path="resources/ap-exams" element={<APResources />} />
           <Route path="resources/study-tools" element={<StudyTools />} />
+          <Route path="resources/cornell-notes" element={<CornellNotes />} />
           <Route path="contact" element={<Contact />} />
           <Route path="about" element={<About />} />
+          <Route path="terms-of-service" element={<TermsOfService />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="cookie-policy" element={<CookiePolicy />} />
         </Route>
       </Routes>
     </Router>

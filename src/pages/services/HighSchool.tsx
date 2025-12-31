@@ -1,21 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle, BookOpen, GraduationCap, Target, Clock, Users, MessageCircle, ArrowRight, Award, TrendingUp } from 'lucide-react';
+import { CheckCircle, BookOpen, GraduationCap, Target, Clock, MessageCircle, ArrowRight, Award, TrendingUp, Sparkles, Star, ChevronRight } from 'lucide-react';
 
 const HighSchool = () => {
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    setAnimate(true);
+  }, []);
+
   const subjects = [
     { category: 'Mathematics', items: ['Algebra I & II', 'Geometry', 'Pre-Calculus', 'Calculus', 'Statistics', 'AP Math Courses'] },
     { category: 'Science', items: ['Biology', 'Chemistry', 'Physics', 'Environmental Science', 'AP Sciences'] },
     { category: 'English', items: ['Literature Analysis', 'Essay Writing', 'Research Papers', 'AP English', 'College Essays'] },
     { category: 'Social Studies', items: ['US History', 'World History', 'Government', 'Economics', 'AP History'] },
     { category: 'Test Prep', items: ['SAT', 'ACT', 'CLT', 'AP Exams', 'PERT', 'College Placement'] }
-  ];
-
-  const challenges = [
-    { title: 'Falling Grades', desc: 'Struggling to maintain GPA in challenging courses', icon: <TrendingUp size={24} /> },
-    { title: 'AP Course Load', desc: 'Managing multiple advanced placement courses', icon: <BookOpen size={24} /> },
-    { title: 'College Prep Stress', desc: 'Balancing academics with SAT/ACT preparation', icon: <GraduationCap size={24} /> },
-    { title: 'Study Skills', desc: 'Lacking effective study strategies for high school demands', icon: <Target size={24} /> }
   ];
 
   const outcomes = [
@@ -28,236 +27,275 @@ const HighSchool = () => {
   ];
 
   return (
-    <div className="pt-32 pb-24">
+    <div className="pt-24 pb-20 overflow-x-hidden">
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-froyo-dark-blue to-froyo-light-blue text-white py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="inline-block bg-froyo-gold text-white font-bold tracking-widest uppercase text-sm px-4 py-2 rounded-full mb-6">
-                Grades 9-12
-              </span>
-              <h1 className="text-4xl md:text-5xl lg:text-[60px] font-heading mb-6 leading-tight">
-                High School Tutoring in West Kendall
+      <section className="relative min-h-[90vh] flex items-center bg-slate-50 overflow-hidden">
+        {/* Dynamic Background */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-froyo-light-blue/20 to-transparent rounded-full blur-[120px] -translate-y-1/3 translate-x-1/3 animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-froyo-gold/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3"></div>
+
+        <div className="max-w-7xl mx-auto px-4 relative z-10 w-full">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Text Content */}
+            <div className={`space-y-8 transition-all duration-1000 ${animate ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+              <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm">
+                <span className="flex h-2 w-2 rounded-full bg-froyo-gold"></span>
+                <span className="font-bold text-sm text-slate-800 uppercase tracking-wider">Grades 9-12</span>
+              </div>
+
+              <h1 className="text-4xl md:text-6xl lg:text-[80px] leading-[1.1] font-heading text-slate-900 tracking-tight">
+                High School <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-froyo-dark-blue to-froyo-light-blue">Redefined.</span>
               </h1>
-              <p className="text-xl opacity-90 mb-4">
-                College Prep, AP Support, and Grade Recovery
+
+              <p className="text-lg md:text-xl text-slate-600 max-w-lg leading-relaxed border-l-4 border-froyo-gold pl-6">
+                Navigate the path to college with confidence. Expert tutoring for AP courses, SAT prep, and GPA recovery.
               </p>
-              <p className="text-lg opacity-80 mb-8 max-w-lg">
-                Personalized academic support designed to help high school students excel in challenging coursework, prepare for college admissions, and build the skills needed for academic success.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link to="/contact?service=high-school" className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl hover:scale-105 active:scale-95 flex items-center gap-2">
-                  <MessageCircle size={20} />
-                  Schedule Free Assessment
-                </Link>
-                <Link to="/pricing" className="bg-white/20 backdrop-blur-md text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/30 transition-all flex items-center gap-2">
-                  View Pricing
+
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <Link to="/contact?service=high-school" className="bg-slate-900 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-froyo-dark-blue transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center gap-2">
+                  Get Started
                   <ArrowRight size={20} />
                 </Link>
+                <Link to="/pricing" className="bg-white text-slate-900 px-8 py-4 rounded-full font-bold text-lg border-2 border-slate-100 hover:border-slate-900 transition-all flex items-center justify-center gap-2">
+                  View Pricing
+                </Link>
               </div>
-            </div>
-            <div className="hidden lg:block">
-              <img
-                src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80"
-                alt="High school student studying"
-                className="rounded-3xl shadow-2xl"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Who It's For */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading mb-4">Common Challenges Addressed</h2>
-            <p className="text-xl text-slate-600">High school brings unique academic pressures. Sessions are designed to address:</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {challenges.map((challenge, i) => (
-              <div key={i} className="bg-slate-50 rounded-2xl p-6 text-center">
-                <div className="w-14 h-14 bg-froyo-dark-blue/10 rounded-xl flex items-center justify-center mx-auto mb-4 text-froyo-dark-blue">
-                  {challenge.icon}
+              <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 text-sm font-bold text-slate-500">
+                <div className="flex items-center gap-2">
+                  <CheckCircle size={18} className="text-green-500" />
+                  <span>AP Expert Tutors</span>
                 </div>
-                <h3 className="font-bold text-lg mb-2">{challenge.title}</h3>
-                <p className="text-slate-600 text-sm">{challenge.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="py-16 bg-slate-50">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="text-froyo-dark-blue font-bold tracking-[0.2em] uppercase text-sm mb-4 block">The Process</span>
-            <h2 className="text-3xl md:text-4xl font-heading">How High School Tutoring Works</h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { step: '01', title: 'Initial Evaluation', desc: 'Academic strengths, weaknesses, and goals are assessed through diagnostic testing and transcript review.', color: 'bg-froyo-light-blue' },
-              { step: '02', title: 'Customized Strategy', desc: 'A targeted learning plan is developed based on current courses, GPA goals, and college aspirations.', color: 'bg-froyo-gold' },
-              { step: '03', title: 'Direct Instruction', desc: 'One-on-one sessions focus on content mastery, study strategies, and building academic confidence.', color: 'bg-froyo-dark-blue' },
-              { step: '04', title: 'Ongoing Assessment', desc: 'Progress is tracked through grade monitoring with regular parent communication and plan adjustments.', color: 'bg-green-500' }
-            ].map((item, i) => (
-              <div key={i} className="bg-white rounded-[2rem] p-8 shadow-lg border border-slate-100">
-                <div className={`w-14 h-14 rounded-2xl ${item.color} flex items-center justify-center mb-6 shadow-lg`}>
-                  <span className="text-white font-bold text-lg">{item.step}</span>
+                <div className="flex items-center gap-2">
+                  <CheckCircle size={18} className="text-green-500" />
+                  <span>College Counseling</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                <p className="text-slate-600">{item.desc}</p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Subjects Covered */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading mb-4">Subjects Covered</h2>
-            <p className="text-xl text-slate-600">Support available across all core high school subjects and standardized tests</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {subjects.map((subject, i) => (
-              <div key={i} className="bg-slate-50 rounded-2xl p-6">
-                <h3 className="font-bold text-lg text-froyo-dark-blue mb-4">{subject.category}</h3>
-                <ul className="space-y-2">
-                  {subject.items.map((item, j) => (
-                    <li key={j} className="flex items-center gap-2 text-slate-700">
-                      <CheckCircle className="text-green-500 flex-shrink-0" size={16} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Expected Outcomes */}
-      <section className="py-16 bg-froyo-dark-blue text-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-heading mb-6">Expected Outcomes</h2>
-              <p className="text-xl opacity-90 mb-8">
-                Students typically see measurable improvement within 8-12 weeks of consistent tutoring.
-              </p>
-              <ul className="grid grid-cols-2 gap-4">
-                {outcomes.map((outcome, i) => (
-                  <li key={i} className="flex items-center gap-3">
-                    <CheckCircle className="text-green-400 flex-shrink-0" size={20} />
-                    <span>{outcome}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
-              <Award className="text-froyo-gold mb-4" size={40} />
-              <h3 className="text-2xl font-bold mb-4">College Preparation Focus</h3>
-              <p className="opacity-90 mb-6">
-                High school tutoring includes comprehensive support for the college application process:
+
+            {/* Hero Visual */}
+            <div className={`relative transition-all duration-1000 delay-300 ${animate ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+              <div className="relative z-10">
+                <img
+                  src="/high-school-hero.png"
+                  alt="High School Student Success"
+                  className="rounded-[3rem] shadow-2xl border-[10px] border-white w-full object-cover aspect-[4/5] transform hover:scale-[1.02] transition-transform duration-700"
+                />
+
+                {/* Floating Glass Cards - Hidden on mobile to prevent overlap */}
+                <div className="hidden md:block absolute top-10 -left-10 bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/50 animate-[bounce_4s_infinite]">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-green-100 p-2 rounded-lg text-green-600">
+                      <TrendingUp size={20} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-500 uppercase">GPA Boost</p>
+                      <p className="font-bold text-slate-900">+1.5 Points</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="hidden md:block absolute bottom-20 -right-5 bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/50 animate-[bounce_5s_infinite]">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-froyo-gold/20 p-2 rounded-lg text-froyo-gold">
+                      <Award size={20} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-500 uppercase">SAT Score</p>
+                      <p className="font-bold text-slate-900">Top 10%</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Decorative Elements behind image */}
+              <div className="absolute -inset-4 bg-gradient-to-tr from-froyo-dark-blue to-froyo-light-blue rounded-[3.5rem] -z-10 opacity-20 rotate-3"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The " Zig Zag " Sections - Breaking the Grid */}
+
+      {/* Section 1: Challenges */}
+      <section className="py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div className="relative order-2 lg:order-1">
+              <div className="aspect-square rounded-[3rem] overflow-hidden shadow-2xl relative">
+                <img
+                  src="/high-school-study.png"
+                  alt="Student Studying Late"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-froyo-dark-blue/20 mix-blend-multiply"></div>
+              </div>
+              {/* Abstract Shape */}
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-froyo-gold rounded-full blur-3xl opacity-30 -z-10"></div>
+            </div>
+
+            <div className="order-1 lg:order-2">
+              <span className="text-froyo-light-blue font-bold tracking-widest uppercase mb-4 block">The Reality</span>
+              <h2 className="text-5xl font-heading font-bold text-slate-900 mb-8 leading-tight">
+                High School is <span className="text-froyo-dark-blue underline decoration-froyo-gold/50 decoration-4 underline-offset-8">Intense</span>.
+              </h2>
+              <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                Between AP courses, extracurriculars, and the looming pressure of college applications, students often feel overwhelmed. We help turn that stress into strategy.
               </p>
-              <ul className="space-y-3">
+
+              <div className="space-y-6">
                 {[
-                  'SAT/ACT score improvement strategies',
-                  'College essay brainstorming and review',
-                  'AP exam preparation',
-                  'Course selection guidance',
-                  'GPA recovery plans'
+                  { title: "AP Course Load", desc: "Managing rigorous content and rapid pacing." },
+                  { title: "Test Anxiety", desc: "Performing under pressure for SAT/ACT/CLT." },
+                  { title: "Time Management", desc: "Balancing academic and personal life." }
                 ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3">
-                    <CheckCircle className="text-green-400 flex-shrink-0" size={18} />
-                    <span>{item}</span>
-                  </li>
+                  <div key={i} className="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors border-l-4 border-transparent hover:border-froyo-gold cursor-default group">
+                    <div className="mt-1 transition-transform group-hover:scale-110">
+                      <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
+                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg text-slate-900">{item.title}</h4>
+                      <p className="text-slate-500">{item.desc}</p>
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-heading text-center mb-12">High School Tutoring Rates</h2>
+      {/* Section 2: Subjects */}
+      <section className="py-32 bg-slate-900 text-white relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20">
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-froyo-light-blue rounded-full blur-[150px] -translate-y-1/2 translate-x-1/2"></div>
+        </div>
 
-          <div className="bg-slate-50 rounded-3xl p-8 md:p-12">
-            <div className="grid md:grid-cols-3 gap-8 mb-8">
-              <div className="text-center">
-                <p className="text-slate-500 mb-2">Homework Help</p>
-                <p className="text-3xl font-heading text-froyo-dark-blue">$45-85</p>
-                <p className="text-sm text-slate-500">per session</p>
-              </div>
-              <div className="text-center border-x border-slate-200">
-                <p className="text-slate-500 mb-2">Personalized Lessons</p>
-                <p className="text-3xl font-heading text-froyo-dark-blue">$80-160</p>
-                <p className="text-sm text-slate-500">per session</p>
-              </div>
-              <div className="text-center">
-                <p className="text-slate-500 mb-2">Full Package</p>
-                <p className="text-3xl font-heading text-froyo-dark-blue">$120-200</p>
-                <p className="text-sm text-slate-500">per session</p>
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div>
+              <span className="text-froyo-gold font-bold tracking-widest uppercase mb-4 block">Comprehensive Support</span>
+              <h2 className="text-5xl font-heading font-bold mb-8 leading-tight">
+                Master Every <br />Subject.
+              </h2>
+              <p className="text-xl text-slate-300 mb-12">
+                From Algebra I to AP Physics, our expert tutors provide the deep content knowledge needed to excel.
+              </p>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                {subjects.map((sub, i) => (
+                  <div key={i} className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors group">
+                    <h3 className="font-bold text-xl mb-3 text-froyo-light-blue group-hover:text-white transition-colors">{sub.category}</h3>
+                    <div className="flex flex-wrap gap-2 text-sm text-slate-400">
+                      {sub.items.slice(0, 3).map((item, j) => (
+                        <span key={j}>{item}{j < 2 ? ' • ' : ''}</span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
-            <div className="text-center">
-              <p className="text-slate-600 mb-4">Rates vary by session duration (60/90/120 min) and location</p>
-              <Link to="/pricing" className="inline-flex items-center gap-2 text-froyo-dark-blue font-bold hover:underline">
-                View Complete Pricing Calculator
-                <ArrowRight size={18} />
+            <div className="relative">
+              <div className="grid grid-cols-2 gap-4">
+                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=400&q=80" className="rounded-[2rem] translate-y-12 shadow-2xl" alt="Math" />
+                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=400&q=80" className="rounded-[2rem] shadow-2xl" alt="Science" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 3: The Process (Bento Style) */}
+      <section className="py-32 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <span className="text-froyo-dark-blue font-bold tracking-widest uppercase mb-4 block">Our Methodology</span>
+            <h2 className="text-4xl md:text-6xl font-heading font-bold mb-6 text-slate-900">The Path to Success</h2>
+            <p className="text-xl text-slate-600">A systematic approach to academic excellence.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 grid-rows-2 h-auto md:h-[600px]">
+            {/* Large Card */}
+            <div className="md:col-span-1 md:row-span-2 bg-froyo-dark-blue rounded-[2.5rem] p-10 text-white flex flex-col justify-between relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-froyo-light-blue rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
+              <div>
+                <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
+                  <Target className="text-froyo-gold" />
+                </div>
+                <h3 className="text-3xl font-bold mb-4">Initial Evaluation</h3>
+                <p className="text-slate-300 leading-relaxed">
+                  We don't guess. We assess. Every student starts with a deep dive into their current standing, learning style, and specific gaps.
+                </p>
+              </div>
+              <div className="mt-8">
+                <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
+                  <div className="h-full bg-froyo-gold w-3/4"></div>
+                </div>
+                <div className="flex justify-between text-xs font-bold mt-2 text-froyo-gold uppercase">
+                  <span>Analysis</span>
+                  <span>Strategy</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Medium Card */}
+            <div className="md:col-span-2 bg-white rounded-[2.5rem] p-10 shadow-lg border border-slate-100 flex items-center gap-8 relative overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-froyo-gold/10 rounded-full blur-2xl"></div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold mb-4 text-slate-900">Customized Strategy</h3>
+                <p className="text-slate-600">
+                  A targeted learning plan developed specifically for your student's coursework and college goals.
+                </p>
+              </div>
+              <div className="hidden sm:block w-32 h-32 bg-slate-100 rounded-full flex-shrink-0 flex items-center justify-center">
+                <BookOpen size={40} className="text-froyo-dark-blue" />
+              </div>
+            </div>
+
+            {/* Small Card 1 */}
+            <div className="bg-white rounded-[2.5rem] p-8 shadow-lg border border-slate-100 hover:-translate-y-1 transition-transform">
+              <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                <TrendingUp className="text-green-500" /> Direct Instruction
+              </h3>
+              <p className="text-slate-500 text-sm">One-on-one sessions focused on content mastery and study strategies.</p>
+            </div>
+
+            {/* Small Card 2 */}
+            <div className="bg-white rounded-[2.5rem] p-8 shadow-lg border border-slate-100 hover:-translate-y-1 transition-transform">
+              <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                <Award className="text-froyo-gold" /> Ongoing Assessment
+              </h3>
+              <p className="text-slate-500 text-sm">Progress tracked through grade monitoring and mock exams.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section - Full Width Banner */}
+      <section className="py-24 px-4">
+        <div className="max-w-7xl mx-auto bg-gradient-to-r from-froyo-dark-blue to-[#00335c] rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-froyo-light-blue rounded-full blur-[120px] opacity-30"></div>
+
+          <div className="relative z-10 max-w-4xl mx-auto space-y-8">
+            <h2 className="text-4xl md:text-7xl font-heading font-bold text-white tracking-tight">
+              Ready to Excel?
+            </h2>
+            <p className="text-2xl text-slate-300 font-light">
+              Join the students achieving their dream grades and college acceptances.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-6 pt-8">
+              <Link to="/contact?service=high-school" className="bg-froyo-gold text-white px-12 py-5 rounded-full font-bold text-xl hover:bg-white hover:text-froyo-dark-blue transition-all shadow-lg hover:shadow-2xl scale-100 hover:scale-105 active:scale-95 flex items-center justify-center gap-3">
+                Schedule Assessment <ArrowRight />
+              </Link>
+              <Link to="/pricing" className="bg-transparent border-2 border-white/30 text-white px-12 py-5 rounded-full font-bold text-xl hover:bg-white/10 transition-all flex items-center justify-center">
+                View Pricing
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-16 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-heading text-center mb-12">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {[
-              { q: "How often should my high schooler meet with a tutor?", a: "Most students benefit from 1-2 sessions per week. Students in AP courses or preparing for standardized tests may need additional sessions during peak periods." },
-              { q: "Can tutoring help with college applications?", a: "Yes. In addition to academic support, assistance is available for college essay writing, application review, and SAT/ACT preparation." },
-              { q: "Do you work with students who have IEPs or 504 plans?", a: "Absolutely. Instruction can be adapted to accommodate learning differences and work in coordination with school accommodations." },
-              { q: "What if my student needs help in multiple subjects?", a: "Multi-subject support is available. Sessions can focus on different subjects as needed, and priority areas are identified during the initial assessment." },
-              { q: "How quickly will I see grade improvement?", a: "Most students see noticeable improvement within 4-6 weeks. Significant grade recovery typically occurs within one grading period of consistent tutoring." }
-            ].map((faq, i) => (
-              <div key={i} className="bg-white rounded-2xl p-6 shadow-sm">
-                <h3 className="font-bold text-lg mb-2">{faq.q}</h3>
-                <p className="text-slate-600">{faq.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-heading mb-6">Ready to Improve Your High Schooler's Grades?</h2>
-          <p className="text-xl text-slate-600 mb-8">
-            Schedule a free assessment to evaluate your student's needs and create a personalized learning plan.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact?service=high-school" className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl shadow-froyo-gold/20 hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
-              <MessageCircle size={20} />
-              Schedule Free Assessment
-            </Link>
-            <Link to="/" className="bg-white text-froyo-dark-blue px-8 py-4 rounded-full font-bold text-lg border-2 border-froyo-dark-blue hover:bg-froyo-dark-blue hover:text-white transition-all flex items-center justify-center gap-2">
-              Back to Home
-              <ArrowRight size={20} />
-            </Link>
           </div>
         </div>
       </section>

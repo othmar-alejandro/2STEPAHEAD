@@ -228,7 +228,7 @@ const StickyPrograms = () => {
       desc: "Diagnostic-driven SAT and ACT preparation. Your student's baseline is evaluated, weak areas are identified, and targeted strategies are provided to improve scores efficiently.",
       image: "https://images.unsplash.com/photo-1543269664-7eef42226a21?auto=format&fit=crop&w=600&q=80",
       features: ["Diagnostic Testing", "Targeted Practice", "Strategy Development"],
-      link: "/services/high-school"
+      link: "/test-prep"
     },
     {
       title: "ADHD & Learning Support",
@@ -779,11 +779,17 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Placeholder for Map */}
-            <div className="mt-12 w-full h-64 bg-slate-800 rounded-3xl overflow-hidden border border-slate-700 flex items-center justify-center grayscale opacity-50">
-              <div className="text-center">
-                <MapPin className="mx-auto mb-2 opacity-20" size={48} />
-                <p className="text-slate-500">Service Area Map View</p>
+            {/* Service Area Map */}
+            <div className="mt-12 w-full h-64 bg-slate-800 rounded-3xl overflow-hidden border border-slate-700 relative group">
+              <img
+                src="/hammocks-map.png"
+                alt="Service Area Map - The Hammocks & West Kendall"
+                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+              />
+              <div className="absolute bottom-4 left-4 bg-slate-900/80 backdrop-blur-md px-4 py-2 rounded-full border border-slate-700">
+                <p className="text-sm font-bold text-froyo-gold flex items-center gap-2">
+                  <MapPin size={14} /> The Hammocks, FL
+                </p>
               </div>
             </div>
           </div>

@@ -1,333 +1,300 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle, Brain, Heart, Target, Lightbulb, MessageCircle, ArrowRight, Users, Puzzle, Clock } from 'lucide-react';
+import { CheckCircle, Brain, Heart, Target, Lightbulb, MessageCircle, ArrowRight, Users, Puzzle, Clock, Sparkles } from 'lucide-react';
 
 const SpecialNeeds = () => {
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    setAnimate(true);
+  }, []);
+
   const populations = [
     {
       title: 'ADHD',
-      desc: 'Students with attention challenges benefit from structured sessions with built-in movement breaks and multi-sensory learning approaches.',
+      desc: 'Structured sessions with built-in movement breaks and multi-sensory learning approaches.',
       strategies: ['Chunked instruction', 'Movement integration', 'Visual schedules', 'Frequent check-ins']
     },
     {
       title: 'Autism Spectrum',
-      desc: 'Sessions adapted to individual sensory needs and communication styles, with consistent routines and clear expectations.',
+      desc: 'Sessions adapted to sensory needs and communication styles, with clear expectations.',
       strategies: ['Predictable structure', 'Visual supports', 'Special interest integration', 'Sensory considerations']
     },
     {
       title: 'Dyslexia',
-      desc: 'Multisensory reading instruction using research-based approaches that build decoding skills and reading confidence.',
-      strategies: ['Orton-Gillingham based methods', 'Multisensory phonics', 'Fluency practice', 'Accommodations support']
+      desc: 'Multisensory reading instruction using research-based approaches to build decoding skills.',
+      strategies: ['Orton-Gillingham methods', 'Multisensory phonics', 'Fluency practice', 'Accommodations support']
     },
     {
       title: 'Gifted Learners',
-      desc: 'Enrichment and acceleration for students who need more challenge, with focus on critical thinking and deeper exploration.',
+      desc: 'Enrichment and acceleration for students who need more challenge and depth.',
       strategies: ['Advanced content', 'Depth over breadth', 'Independent projects', 'Critical thinking focus']
     }
   ];
 
-  const approach = [
-    { title: 'Strength-Based', desc: 'Sessions build on what students do well to address areas of challenge', icon: <Lightbulb size={24} /> },
-    { title: 'Individualized', desc: 'Every student\'s unique profile guides instruction and accommodations', icon: <Puzzle size={24} /> },
-    { title: 'Patient & Supportive', desc: 'A calm, encouraging environment reduces anxiety and builds confidence', icon: <Heart size={24} /> },
-    { title: 'Flexible Pacing', desc: 'Content and timing adapt to student needs in the moment', icon: <Clock size={24} /> }
-  ];
-
-  const outcomes = [
-    'Improved academic performance',
-    'Better focus and attention',
-    'Increased self-confidence',
-    'Effective study strategies',
-    'Reduced school anxiety',
-    'Self-advocacy skills'
-  ];
-
   return (
-    <div className="pt-32 pb-24">
+    <div className="pt-24 pb-20 overflow-x-hidden">
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-froyo-dark-blue to-froyo-light-blue text-white py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="inline-block bg-froyo-gold text-white font-bold tracking-widest uppercase text-sm px-4 py-2 rounded-full mb-6">
-                Specialized Support
-              </span>
-              <h1 className="text-4xl md:text-5xl lg:text-[60px] font-heading mb-6 leading-tight">
-                ADHD & Learning Support in West Kendall
+      <section className="relative min-h-[90vh] flex items-center bg-slate-50 overflow-hidden">
+        {/* Dynamic Background */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-froyo-light-blue/20 to-transparent rounded-full blur-[120px] -translate-y-1/3 translate-x-1/3 animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-froyo-gold/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3"></div>
+
+        <div className="max-w-7xl mx-auto px-4 relative z-10 w-full">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Text Content */}
+            <div className={`space-y-8 transition-all duration-1000 ${animate ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+              <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm">
+                <span className="flex h-2 w-2 rounded-full bg-froyo-gold"></span>
+                <span className="font-bold text-sm text-slate-800 uppercase tracking-wider">Specialized Support</span>
+              </div>
+
+              <h1 className="text-4xl md:text-6xl lg:text-[80px] leading-[1.1] font-heading text-slate-900 tracking-tight">
+                Learning that <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-froyo-dark-blue to-froyo-light-blue">Fits You.</span>
               </h1>
-              <p className="text-xl opacity-90 mb-4">
-                Specialized Instruction for Diverse Learners
+
+              <p className="text-lg md:text-xl text-slate-600 max-w-lg leading-relaxed border-l-4 border-froyo-gold pl-6">
+                We celebrate neurodiversity. Our strength-based approach helps students with ADHD, Autism, and learning differences thrive.
               </p>
-              <p className="text-lg opacity-80 mb-8 max-w-lg">
-                Every brain is different. Specialized tutoring for students with ADHD, Autism, Dyslexia, and giftedness adapts to individual learning profiles and builds on each student's unique strengths.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link to="/contact?service=LSpecial-LNeeds" className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl hover:scale-105 active:scale-95 flex items-center gap-2">
-                  <MessageCircle size={20} />
-                  Schedule Free Consultation
-                </Link>
-                <Link to="/pricing" className="bg-white/20 backdrop-blur-md text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/30 transition-all flex items-center gap-2">
-                  View Pricing
+
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <Link to="/contact?service=special-needs" className="bg-slate-900 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-froyo-dark-blue transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center gap-2">
+                  Get Started
                   <ArrowRight size={20} />
                 </Link>
+                <Link to="/pricing" className="bg-white text-slate-900 px-8 py-4 rounded-full font-bold text-lg border-2 border-slate-100 hover:border-slate-900 transition-all flex items-center justify-center gap-2">
+                  View Pricing
+                </Link>
               </div>
-            </div>
-            <div className="hidden lg:block">
-              <img
-                src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=600&q=80"
-                alt="Student receiving specialized instruction"
-                className="rounded-3xl shadow-2xl"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Our Approach */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading mb-4">Our Approach to Diverse Learners</h2>
-            <p className="text-xl text-slate-600">Instruction is adapted to meet each student where they are</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {approach.map((item, i) => (
-              <div key={i} className="bg-slate-50 rounded-2xl p-6 text-center">
-                <div className="w-14 h-14 bg-froyo-dark-blue/10 rounded-xl flex items-center justify-center mx-auto mb-4 text-froyo-dark-blue">
-                  {item.icon}
+              <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 text-sm font-bold text-slate-500">
+                <div className="flex items-center gap-2">
+                  <CheckCircle size={18} className="text-green-500" />
+                  <span>Individualized Plans</span>
                 </div>
-                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                <p className="text-slate-600 text-sm">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Populations Served */}
-      <section className="py-16 bg-slate-50">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="text-froyo-dark-blue font-bold tracking-[0.2em] uppercase text-sm mb-4 block">Specialized Support</span>
-            <h2 className="text-3xl md:text-4xl font-heading">Students Served</h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {populations.map((pop, i) => (
-              <div key={i} className="bg-white rounded-3xl p-8 shadow-lg border border-slate-100">
-                <h3 className="text-2xl font-bold text-froyo-dark-blue mb-2">{pop.title}</h3>
-                <p className="text-slate-600 mb-6">{pop.desc}</p>
-                <h4 className="font-bold text-sm uppercase tracking-wider text-slate-500 mb-3">Strategies Used:</h4>
-                <ul className="space-y-2">
-                  {pop.strategies.map((strategy, j) => (
-                    <li key={j} className="flex items-center gap-2 text-slate-700">
-                      <CheckCircle className="text-green-500 flex-shrink-0" size={16} />
-                      {strategy}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="text-froyo-dark-blue font-bold tracking-[0.2em] uppercase text-sm mb-4 block">The Process</span>
-            <h2 className="text-3xl md:text-4xl font-heading">How Specialized Tutoring Works</h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { step: '01', title: 'Comprehensive Intake', desc: 'Discussion of diagnoses, school accommodations (IEP/504), and parent concerns to build a complete picture.', color: 'bg-froyo-light-blue' },
-              { step: '02', title: 'Learning Profile', desc: 'Observation and assessment identify strengths, challenges, sensory needs, and optimal learning conditions.', color: 'bg-froyo-gold' },
-              { step: '03', title: 'Adapted Instruction', desc: 'Sessions are designed around the student\'s profile, with flexibility built in to respond to daily needs.', color: 'bg-froyo-dark-blue' },
-              { step: '04', title: 'Ongoing Communication', desc: 'Regular updates to parents, and coordination with school and therapists as needed.', color: 'bg-green-500' }
-            ].map((item, i) => (
-              <div key={i} className="bg-slate-50 rounded-[2rem] p-8 shadow-lg border border-slate-100">
-                <div className={`w-14 h-14 rounded-2xl ${item.color} flex items-center justify-center mb-6 shadow-lg`}>
-                  <span className="text-white font-bold text-lg">{item.step}</span>
+                <div className="flex items-center gap-2">
+                  <CheckCircle size={18} className="text-green-500" />
+                  <span>Empathy First</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                <p className="text-slate-600">{item.desc}</p>
               </div>
-            ))}
+            </div>
+
+            {/* Hero Visual */}
+            <div className={`relative transition-all duration-1000 delay-300 ${animate ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+              <div className="relative z-10">
+                <img
+                  src="/special-needs-support.png"
+                  alt="Supportive Teaching"
+                  className="rounded-[3rem] shadow-2xl border-[10px] border-white w-full object-cover aspect-[4/5] transform hover:scale-[1.02] transition-transform duration-700"
+                />
+
+                {/* Floating Glass Cards - Hidden on mobile */}
+                <div className="hidden md:block absolute top-10 -left-10 bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/50 animate-[bounce_4s_infinite]">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-green-100 p-2 rounded-lg text-green-600">
+                      <Puzzle size={20} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-500 uppercase">Approach</p>
+                      <p className="font-bold text-slate-900">Adaptive</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="hidden md:block absolute bottom-20 -right-5 bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/50 animate-[bounce_5s_infinite]">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-froyo-gold/20 p-2 rounded-lg text-froyo-gold">
+                      <Heart size={20} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-500 uppercase">Comfort</p>
+                      <p className="font-bold text-slate-900">Total</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Decorative Elements behind image */}
+              <div className="absolute -inset-4 bg-gradient-to-tr from-froyo-dark-blue to-froyo-light-blue rounded-[3.5rem] -z-10 opacity-20 rotate-3"></div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Expected Outcomes */}
-      <section className="py-16 bg-froyo-dark-blue text-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-heading mb-6">Expected Outcomes</h2>
-              <p className="text-xl opacity-90 mb-8">
-                With specialized support, students develop both academic skills and the self-awareness to advocate for their learning needs.
-              </p>
-              <ul className="grid grid-cols-2 gap-4">
-                {outcomes.map((outcome, i) => (
-                  <li key={i} className="flex items-center gap-3">
-                    <CheckCircle className="text-green-400 flex-shrink-0" size={20} />
-                    <span>{outcome}</span>
-                  </li>
-                ))}
-              </ul>
+      {/* The "Zig Zag" Section */}
+      <section className="py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div className="relative order-2 lg:order-1">
+              <div className="aspect-square rounded-[3rem] overflow-hidden shadow-2xl relative">
+                <img
+                  src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80"
+                  alt="Student Focus"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-froyo-dark-blue/20 mix-blend-multiply"></div>
+              </div>
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-froyo-gold rounded-full blur-3xl opacity-30 -z-10"></div>
             </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
-              <Brain className="text-froyo-gold mb-4" size={40} />
-              <h3 className="text-2xl font-bold mb-4">Beyond Academics</h3>
-              <p className="opacity-90 mb-6">
-                Specialized tutoring addresses the whole student:
+
+            <div className="order-1 lg:order-2">
+              <span className="text-froyo-light-blue font-bold tracking-widest uppercase mb-4 block">Our Philosophy</span>
+              <h2 className="text-5xl font-heading font-bold text-slate-900 mb-8 leading-tight">
+                Diverse Minds need <span className="text-froyo-dark-blue underline decoration-froyo-gold/50 decoration-4 underline-offset-8">Diverse Methods</span>.
+              </h2>
+              <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                We don't try to fit the student to the curriculum. We fit the teaching to the student.
               </p>
-              <ul className="space-y-3">
+
+              <div className="space-y-6">
                 {[
-                  'Executive function skills (planning, organization)',
-                  'Emotional regulation strategies',
-                  'Self-advocacy development',
-                  'Building on strengths and interests',
-                  'Reducing shame around learning differences'
+                  { title: "Strength-Based", desc: "Building on what students do well." },
+                  { title: "Patience", desc: "A calm environment that reduces anxiety." },
+                  { title: "Flexibility", desc: "Adapting pacing to energy and focus levels." }
                 ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3">
-                    <CheckCircle className="text-green-400 flex-shrink-0" size={18} />
-                    <span>{item}</span>
-                  </li>
+                  <div key={i} className="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors border-l-4 border-transparent hover:border-froyo-gold cursor-default group">
+                    <div className="mt-1 transition-transform group-hover:scale-110">
+                      <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
+                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg text-slate-900">{item.title}</h4>
+                      <p className="text-slate-500">{item.desc}</p>
+                    </div>
+                  </div>
                 ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* IEP/504 Support */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="bg-froyo-cream/30 rounded-3xl p-8 md:p-12 border border-froyo-gold/20">
-            <div className="text-center mb-8">
-              <Users className="text-froyo-dark-blue mx-auto mb-4" size={40} />
-              <h2 className="text-3xl font-heading mb-4">IEP & 504 Plan Support</h2>
-              <p className="text-xl text-slate-600">Tutoring can complement and reinforce school accommodations</p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="font-bold text-lg mb-4">How Tutoring Supports School Plans:</h3>
-                <ul className="space-y-3">
-                  {[
-                    'Reinforces IEP goals in a 1-on-1 setting',
-                    'Practices using accommodations effectively',
-                    'Builds skills that support classroom success',
-                    'Provides progress data for IEP meetings'
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-slate-700">
-                      <CheckCircle className="text-green-500 flex-shrink-0 mt-0.5" size={16} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-bold text-lg mb-4">Coordination Available:</h3>
-                <ul className="space-y-3">
-                  {[
-                    'Communication with teachers (with permission)',
-                    'Alignment with therapy goals (OT, Speech)',
-                    'Documentation for school meetings',
-                    'Attendance at IEP meetings (if requested)'
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-slate-700">
-                      <CheckCircle className="text-green-500 flex-shrink-0 mt-0.5" size={16} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="py-16 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-heading text-center mb-12">Specialized Tutoring Rates</h2>
+      {/* Section 2: Populations */}
+      <section className="py-32 bg-slate-900 text-white relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20">
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-froyo-light-blue rounded-full blur-[150px] -translate-y-1/2 translate-x-1/2"></div>
+        </div>
 
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-lg">
-            <div className="text-center mb-8">
-              <p className="text-slate-600 mb-4">Personalized Lessons (recommended for specialized support)</p>
-              <p className="text-4xl font-heading text-froyo-dark-blue mb-2">$80-160</p>
-              <p className="text-slate-500">per session, based on duration and location</p>
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div>
+              <span className="text-froyo-gold font-bold tracking-widest uppercase mb-4 block">Who We Serve</span>
+              <h2 className="text-5xl font-heading font-bold mb-8 leading-tight">
+                Expertise for <br />Every Need.
+              </h2>
+              <p className="text-xl text-slate-300 mb-12">
+                Our tutors are experienced in supporting a wide range of learning profiles.
+              </p>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                {populations.map((pop, i) => (
+                  <div key={i} className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors group">
+                    <h3 className="font-bold text-xl mb-3 text-froyo-light-blue group-hover:text-white transition-colors">{pop.title}</h3>
+                    <p className="text-sm text-slate-400 mb-2">{pop.desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="bg-slate-50 rounded-2xl p-6 mb-8">
-              <h3 className="font-bold text-lg mb-4 text-center">Session Options</h3>
-              <div className="grid md:grid-cols-3 gap-4 text-center">
-                <div>
-                  <p className="font-bold text-froyo-dark-blue">60 min</p>
-                  <p className="text-sm text-slate-500">Standard session</p>
+            <div className="relative">
+              <div className="grid grid-cols-2 gap-4">
+                <img src="https://images.unsplash.com/photo-1594608661623-aa0bd3a69d98?auto=format&fit=crop&w=400&q=80" className="rounded-[2rem] translate-y-12 shadow-2xl" alt="Focus" />
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=400&q=80" className="rounded-[2rem] shadow-2xl" alt="Learning" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 3: The Process (Bento Style) */}
+      <section className="py-32 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <span className="text-froyo-dark-blue font-bold tracking-widest uppercase mb-4 block">Our Process</span>
+            <h2 className="text-4xl md:text-6xl font-heading font-bold mb-6 text-slate-900">Understanding You</h2>
+            <p className="text-xl text-slate-600">We start by listening.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 grid-rows-2 h-auto md:h-[600px]">
+            {/* Large Card */}
+            <div className="md:col-span-1 md:row-span-2 bg-froyo-dark-blue rounded-[2.5rem] p-10 text-white flex flex-col justify-between relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-froyo-light-blue rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
+              <div>
+                <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
+                  <Users className="text-froyo-gold" />
                 </div>
-                <div className="border-x border-slate-200">
-                  <p className="font-bold text-froyo-dark-blue">90 min</p>
-                  <p className="text-sm text-slate-500">Extended focus</p>
+                <h3 className="text-3xl font-bold mb-4">Comprehensive Intake</h3>
+                <p className="text-slate-300 leading-relaxed">
+                  We review IEPs, 504s, and assessments. Most importantly, we listen to your concerns and your child's goals.
+                </p>
+              </div>
+              <div className="mt-8">
+                <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
+                  <div className="h-full bg-froyo-gold w-3/4"></div>
                 </div>
-                <div>
-                  <p className="font-bold text-froyo-dark-blue">120 min</p>
-                  <p className="text-sm text-slate-500">Deep work session</p>
+                <div className="flex justify-between text-xs font-bold mt-2 text-froyo-gold uppercase">
+                  <span>Listening</span>
+                  <span>Understanding</span>
                 </div>
               </div>
             </div>
 
-            <div className="text-center">
-              <Link to="/pricing" className="inline-flex items-center gap-2 text-froyo-dark-blue font-bold hover:underline">
-                View Complete Pricing Calculator
-                <ArrowRight size={18} />
+            {/* Medium Card */}
+            <div className="md:col-span-2 bg-white rounded-[2.5rem] p-10 shadow-lg border border-slate-100 flex items-center gap-8 relative overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-froyo-gold/10 rounded-full blur-2xl"></div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold mb-4 text-slate-900">Learning Profile</h3>
+                <p className="text-slate-600">
+                  We build a profile of your student's strengths, interests, and sensory needs to guide every session.
+                </p>
+              </div>
+              <div className="hidden sm:block w-32 h-32 bg-slate-100 rounded-full flex-shrink-0 flex items-center justify-center">
+                <Brain size={40} className="text-froyo-dark-blue" />
+              </div>
+            </div>
+
+            {/* Small Card 1 */}
+            <div className="bg-white rounded-[2.5rem] p-8 shadow-lg border border-slate-100 hover:-translate-y-1 transition-transform">
+              <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                <Clock className="text-green-500" /> Flexible Pacing
+              </h3>
+              <p className="text-slate-500 text-sm">We take breaks when needed and push when ready.</p>
+            </div>
+
+            {/* Small Card 2 */}
+            <div className="bg-white rounded-[2.5rem] p-8 shadow-lg border border-slate-100 hover:-translate-y-1 transition-transform">
+              <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                <MessageCircle className="text-froyo-gold" /> Communication
+              </h3>
+              <p className="text-slate-500 text-sm">We keep you in the loop after every session.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section - Full Width Banner */}
+      <section className="py-24 px-4">
+        <div className="max-w-7xl mx-auto bg-gradient-to-r from-froyo-dark-blue to-[#00335c] rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-froyo-light-blue rounded-full blur-[120px] opacity-30"></div>
+
+          <div className="relative z-10 max-w-4xl mx-auto space-y-8">
+            <h2 className="text-4xl md:text-7xl font-heading font-bold text-white tracking-tight">
+              A Partner in Your Journey.
+            </h2>
+            <p className="text-2xl text-slate-300 font-light">
+              Get the specialized support your child deserves.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-6 pt-8">
+              <Link to="/contact?service=special-needs" className="bg-froyo-gold text-white px-12 py-5 rounded-full font-bold text-xl hover:bg-white hover:text-froyo-dark-blue transition-all shadow-lg hover:shadow-2xl scale-100 hover:scale-105 active:scale-95 flex items-center justify-center gap-3">
+                Schedule Assessment <ArrowRight />
+              </Link>
+              <Link to="/pricing" className="bg-transparent border-2 border-white/30 text-white px-12 py-5 rounded-full font-bold text-xl hover:bg-white/10 transition-all flex items-center justify-center">
+                View Pricing
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-heading text-center mb-12">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {[
-              { q: "Do you have training in working with students with ADHD?", a: "Yes. Over 15 years of experience includes extensive work with students who have attention challenges, and ongoing professional development in evidence-based ADHD strategies." },
-              { q: "My child has an IEP. Can you help?", a: "Absolutely. Tutoring reinforces IEP goals and helps students practice using their accommodations. With permission, coordination with the school team is available." },
-              { q: "What if my child has meltdowns or shuts down?", a: "Sessions are designed to minimize frustration through appropriate pacing, breaks, and sensory awareness. When dysregulation happens, it's handled with patience and used as a learning opportunity." },
-              { q: "Do you work with twice-exceptional (2e) students?", a: "Yes. Twice-exceptional students (gifted with a learning difference) benefit from instruction that challenges their intellect while supporting their specific needs." },
-              { q: "How do you handle medication timing and side effects?", a: "Session timing can be scheduled around medication effectiveness. Observations about focus and energy levels are shared with parents to support conversations with providers." }
-            ].map((faq, i) => (
-              <div key={i} className="bg-slate-50 rounded-2xl p-6 shadow-sm">
-                <h3 className="font-bold text-lg mb-2">{faq.q}</h3>
-                <p className="text-slate-600">{faq.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-16 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-heading mb-6">Ready to Support Your Unique Learner?</h2>
-          <p className="text-xl text-slate-600 mb-8">
-            Schedule a free consultation to discuss your child's learning profile and how specialized tutoring can help.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl shadow-froyo-gold/20 hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
-              <MessageCircle size={20} />
-              Schedule Free Consultation
-            </Link>
-            <Link to="/" className="bg-white text-froyo-dark-blue px-8 py-4 rounded-full font-bold text-lg border-2 border-froyo-dark-blue hover:bg-froyo-dark-blue hover:text-white transition-all flex items-center justify-center gap-2">
-              Back to Home
-              <ArrowRight size={20} />
-            </Link>
           </div>
         </div>
       </section>

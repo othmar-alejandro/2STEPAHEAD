@@ -8,7 +8,7 @@ const Footer = () => {
     { name: "AP Study Guides", href: "/resources/ap-exams", isExternal: false },
     { name: "SAT Practice Tests", href: "/resources/test-prep", isExternal: false },
     { name: "Pomodoro Timer", href: "/resources/study-tools", isExternal: false },
-    { name: "Cornell Note Taking", href: "/resources/study-tools", isExternal: false }
+    { name: "Cornell Note Taking", href: "/resources/cornell-notes", isExternal: false }
   ];
 
   return (
@@ -17,8 +17,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-16 border-b border-slate-800 pb-12">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <img src="/2stepsaheadlogoweb.png" alt="2 Step Ahead" className="w-32 h-32 object-contain bg-slate-800 rounded-lg p-1" />
-              <span className="text-2xl font-heading text-white">2 Step Ahead</span>
+              <img src="/Favicon.png" alt="2 Step Ahead" className="w-24 h-24 object-contain" />
             </div>
             <p className="max-w-sm mb-6 opacity-80">
               Empowering students to achieve their full potential through personalized tutoring and mentorship in South Florida.
@@ -61,7 +60,7 @@ const Footer = () => {
             <ul className="space-y-4 text-sm">
               <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
+              <li><Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
         </div>
@@ -69,8 +68,8 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
           <p>© {new Date().getFullYear()} {CONTACT_INFO.businessName}. All rights reserved.</p>
           <div className="flex gap-8">
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
+            <Link to="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link to="/cookie-policy" className="hover:text-white transition-colors">Cookie Policy</Link>
           </div>
         </div>
       </div>

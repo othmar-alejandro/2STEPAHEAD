@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle, Clock, Calendar, Target, BookOpen, TrendingUp, Award, MessageCircle, ArrowRight, Users, Star } from 'lucide-react';
+import { CheckCircle, Clock, Target, Award, ArrowRight, TrendingUp } from 'lucide-react';
 
 const TestPrep = () => {
   const [activeTest, setActiveTest] = useState('sat');
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    setAnimate(true);
+  }, []);
 
   const tests = {
     sat: {
@@ -14,11 +19,10 @@ const TestPrep = () => {
       duration: '3 hours',
       scoring: '400-1600',
       features: [
-        'Full diagnostic assessment to identify weak areas',
+        'Full diagnostic assessment',
         'Targeted practice on high-yield topics',
-        'Test-taking strategies and time management',
-        'Regular practice tests with detailed analysis',
-        'College Board materials and official practice'
+        'Time management strategies',
+        'Official practice tests'
       ]
     },
     act: {
@@ -26,14 +30,13 @@ const TestPrep = () => {
       fullName: 'American College Testing',
       description: 'Strategic preparation for all four ACT sections plus optional Writing, with emphasis on pacing and content mastery.',
       sections: ['English', 'Math', 'Reading', 'Science', 'Writing (Optional)'],
-      duration: '2 hours 55 min (+ 40 min Writing)',
+      duration: '2 hours 55 min',
       scoring: '1-36',
       features: [
         'Science reasoning strategies',
         'Fast-paced reading techniques',
-        'Math content review through pre-calculus',
-        'Grammar and rhetoric mastery',
-        'Optional essay preparation'
+        'Math content review',
+        'Grammar mastery'
       ]
     },
     clt: {
@@ -45,312 +48,319 @@ const TestPrep = () => {
       scoring: '10-120',
       features: [
         'Classical literature analysis',
-        'Logic and reasoning development',
+        'Logic and reasoning',
         'Grammar in context',
-        'Mathematical reasoning focus',
-        'Ideal for classical/homeschool students'
+        'Mathematical reasoning'
       ]
     }
   };
 
   const currentTest = tests[activeTest as keyof typeof tests];
 
-  const process = [
-    {
-      step: '01',
-      title: 'Diagnostic Assessment',
-      desc: 'A full-length practice test establishes your baseline score and identifies specific areas for improvement.',
-      icon: <Target className="text-white" size={24} />
-    },
-    {
-      step: '02',
-      title: 'Personalized Study Plan',
-      desc: 'Based on diagnostic results, a customized curriculum targets your weak areas while reinforcing strengths.',
-      icon: <BookOpen className="text-white" size={24} />
-    },
-    {
-      step: '03',
-      title: 'Strategic Instruction',
-      desc: 'One-on-one sessions focus on content review, test-taking strategies, and time management techniques.',
-      icon: <Clock className="text-white" size={24} />
-    },
-    {
-      step: '04',
-      title: 'Practice & Refine',
-      desc: 'Regular practice tests track progress and allow for strategy adjustments leading up to test day.',
-      icon: <TrendingUp className="text-white" size={24} />
-    }
-  ];
-
   return (
-    <div className="pt-32 pb-24">
+    <div className="pt-24 pb-20 overflow-x-hidden">
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-froyo-dark-blue to-froyo-light-blue text-white py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="inline-block bg-froyo-gold text-white font-bold tracking-widest uppercase text-sm px-4 py-2 rounded-full mb-6">
-                Test Preparation
-              </span>
-              <h1 className="text-4xl md:text-5xl lg:text-[60px] font-heading mb-6 leading-tight">
-                SAT, ACT & CLT Preparation in West Kendall
+      <section className="relative min-h-[90vh] flex items-center bg-slate-50 overflow-hidden">
+        {/* Dynamic Background */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-froyo-light-blue/20 to-transparent rounded-full blur-[120px] -translate-y-1/3 translate-x-1/3 animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-froyo-gold/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3"></div>
+
+        <div className="max-w-7xl mx-auto px-4 relative z-10 w-full">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Text Content */}
+            <div className={`space-y-8 transition-all duration-1000 ${animate ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+              <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm">
+                <span className="flex h-2 w-2 rounded-full bg-froyo-gold"></span>
+                <span className="font-bold text-sm text-slate-800 uppercase tracking-wider">Top-Tier Prep</span>
+              </div>
+
+              <h1 className="text-4xl md:text-6xl lg:text-[80px] leading-[1.1] font-heading text-slate-900 tracking-tight">
+                Master the Test. <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-froyo-dark-blue to-froyo-light-blue">Ace Your Future.</span>
               </h1>
-              <p className="text-xl opacity-90 mb-8 max-w-lg">
-                Diagnostic-driven test prep that identifies weak areas, builds targeted skills, and develops strategies for maximum score improvement.
+
+              <p className="text-lg md:text-xl text-slate-600 max-w-lg leading-relaxed border-l-4 border-froyo-gold pl-6">
+                Diagnostic-driven preparation that identifies weak areas, builds targeted skills, and delivers results.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Link to="/contact?service=test-prep" className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl hover:scale-105 active:scale-95 flex items-center gap-2">
-                  <MessageCircle size={20} />
-                  Schedule Free Diagnostic
-                </Link>
-                <Link to="/pricing" className="bg-white/20 backdrop-blur-md text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/30 transition-all flex items-center gap-2">
-                  View Pricing
+
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <Link to="/contact?service=test-prep" className="bg-slate-900 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-froyo-dark-blue transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center gap-2">
+                  Get Started
                   <ArrowRight size={20} />
                 </Link>
+                <Link to="/pricing" className="bg-white text-slate-900 px-8 py-4 rounded-full font-bold text-lg border-2 border-slate-100 hover:border-slate-900 transition-all flex items-center justify-center gap-2">
+                  View Pricing
+                </Link>
+              </div>
+
+              <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 text-sm font-bold text-slate-500">
+                <div className="flex items-center gap-2">
+                  <CheckCircle size={18} className="text-green-500" />
+                  <span>Proven Results</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle size={18} className="text-green-500" />
+                  <span>Custom Plans</span>
+                </div>
               </div>
             </div>
-            <div className="hidden lg:block">
-              <img
-                src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80"
-                alt="Student studying for test"
-                className="rounded-3xl shadow-2xl"
-              />
+
+            {/* Hero Visual */}
+            <div className={`relative transition-all duration-1000 delay-300 ${animate ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+              <div className="relative z-10">
+                <img
+                  src="/test-prep-focus.png"
+                  alt="Test Prep Focus"
+                  className="rounded-[3rem] shadow-2xl border-[10px] border-white w-full object-cover aspect-[4/5] transform hover:scale-[1.02] transition-transform duration-700"
+                />
+
+                {/* Floating Glass Cards - Hidden on mobile */}
+                <div className="hidden md:block absolute top-10 -left-10 bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/50 animate-[bounce_4s_infinite]">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-green-100 p-2 rounded-lg text-green-600">
+                      <TrendingUp size={20} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-500 uppercase">Improvement</p>
+                      <p className="font-bold text-slate-900">+150 Points</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="hidden md:block absolute bottom-20 -right-5 bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/50 animate-[bounce_5s_infinite]">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-froyo-gold/20 p-2 rounded-lg text-froyo-gold">
+                      <Award size={20} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-500 uppercase">Admissions</p>
+                      <p className="font-bold text-slate-900">Top Tier</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Decorative Elements behind image */}
+              <div className="absolute -inset-4 bg-gradient-to-tr from-froyo-dark-blue to-froyo-light-blue rounded-[3.5rem] -z-10 opacity-20 rotate-3"></div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Test Selector */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-heading text-center mb-12">Choose Your Test</h2>
+      {/* The "Zig Zag" Section */}
+      <section className="py-20 md:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="relative order-2 lg:order-1">
+              <div className="aspect-square rounded-[3rem] overflow-hidden shadow-2xl relative">
+                <img
+                  src="/test-prep-success.png"
+                  alt="Test Success"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-froyo-dark-blue/20 mix-blend-multiply"></div>
+              </div>
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-froyo-gold rounded-full blur-3xl opacity-30 -z-10 hidden md:block"></div>
+            </div>
 
-          {/* Test Tabs */}
-          <div className="flex justify-center gap-4 mb-12">
-            {Object.entries(tests).map(([key, test]) => (
-              <button
-                key={key}
-                onClick={() => setActiveTest(key)}
-                className={`px-6 py-3 rounded-full font-bold transition-all ${
-                  activeTest === key
-                    ? 'bg-froyo-dark-blue text-white shadow-lg'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                }`}
-              >
-                {test.name}
-              </button>
-            ))}
+            <div className="order-1 lg:order-2">
+              <span className="text-froyo-light-blue font-bold tracking-widest uppercase mb-4 block">The Stakes</span>
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 mb-8 leading-tight">
+                It's More Than Just a <span className="text-froyo-dark-blue underline decoration-froyo-gold/50 decoration-4 underline-offset-8">Number</span>.
+              </h2>
+              <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                Standardized test scores open doors to scholarships, honors programs, and dream colleges. We help you walk through them.
+              </p>
+
+              <div className="space-y-6">
+                {[
+                  { title: "Scholarships", desc: "Qualify for Bright Futures and merit aid." },
+                  { title: "Admissions", desc: "Stand out in a competitive applicant pool." },
+                  { title: "Confidence", desc: "Walk into test day knowing you're ready." }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors border-l-4 border-transparent hover:border-froyo-gold cursor-default group">
+                    <div className="mt-1 transition-transform group-hover:scale-110">
+                      <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
+                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg text-slate-900">{item.title}</h4>
+                      <p className="text-slate-500">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 2: Test Selector (Dark Variant) */}
+      <section className="py-20 md:py-32 bg-slate-900 text-white relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-froyo-light-blue rounded-full blur-[150px] -translate-y-1/2 translate-x-1/2 opacity-20"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-froyo-gold rounded-full blur-[150px] translate-y-1/2 -translate-x-1/3 opacity-10"></div>
+
+        <div className="max-w-6xl mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">Choose Your Path</h2>
+            <div className="flex flex-wrap justify-center gap-2 bg-white/10 p-1.5 rounded-3xl backdrop-blur-sm border border-white/10">
+              {Object.entries(tests).map(([key, test]) => (
+                <button
+                  key={key}
+                  onClick={() => setActiveTest(key)}
+                  className={`px-6 py-3 rounded-full font-bold transition-all duration-300 text-sm md:text-base ${activeTest === key
+                    ? 'bg-froyo-gold text-slate-900 shadow-lg scale-105'
+                    : 'text-slate-400 hover:text-white hover:bg-white/5'
+                    }`}
+                >
+                  {test.name}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Test Details */}
-          <div className="bg-slate-50 rounded-3xl p-8 md:p-12">
-            <div className="grid md:grid-cols-2 gap-12">
-              <div>
-                <h3 className="text-3xl font-heading text-froyo-dark-blue mb-2">{currentTest.name}</h3>
-                <p className="text-slate-500 mb-4">{currentTest.fullName}</p>
-                <p className="text-lg text-slate-700 mb-6">{currentTest.description}</p>
-
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-white rounded-xl p-4">
-                    <Clock className="text-froyo-dark-blue mb-2" size={20} />
-                    <p className="text-sm text-slate-500">Duration</p>
-                    <p className="font-bold">{currentTest.duration}</p>
-                  </div>
-                  <div className="bg-white rounded-xl p-4">
-                    <Award className="text-froyo-dark-blue mb-2" size={20} />
-                    <p className="text-sm text-slate-500">Score Range</p>
-                    <p className="font-bold">{currentTest.scoring}</p>
-                  </div>
+          <div className="bg-white/5 backdrop-blur-md rounded-[3rem] p-8 md:p-12 lg:p-16 border border-white/10 shadow-2xl transition-all duration-500 relative overflow-hidden group">
+            <div className="grid lg:grid-cols-2 gap-10 md:gap-16 relative z-10">
+              <div className="space-y-6 md:space-y-8">
+                <div>
+                  <h3 className="text-3xl md:text-4xl font-heading text-white mb-2">{currentTest.name}</h3>
+                  <p className="text-lg font-medium text-froyo-light-blue">{currentTest.fullName}</p>
                 </div>
+                <p className="text-lg md:text-xl text-slate-300 leading-relaxed">
+                  {currentTest.description}
+                </p>
 
-                <h4 className="font-bold text-lg mb-3">Test Sections:</h4>
-                <div className="flex flex-wrap gap-2">
-                  {currentTest.sections.map((section) => (
-                    <span key={section} className="bg-froyo-dark-blue/10 text-froyo-dark-blue px-3 py-1 rounded-full text-sm font-medium">
-                      {section}
-                    </span>
-                  ))}
+                <div className="grid grid-cols-2 gap-4 md:gap-6">
+                  <div className="bg-white/10 px-6 py-4 rounded-2xl border border-white/10">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Clock size={16} className="text-froyo-gold" />
+                      <span className="text-xs font-bold text-slate-400 uppercase">Duration</span>
+                    </div>
+                    <p className="font-bold text-lg text-white">{currentTest.duration}</p>
+                  </div>
+                  <div className="bg-white/10 px-6 py-4 rounded-2xl border border-white/10">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Award size={16} className="text-froyo-gold" />
+                      <span className="text-xs font-bold text-slate-400 uppercase">Score Range</span>
+                    </div>
+                    <p className="font-bold text-lg text-white">{currentTest.scoring}</p>
+                  </div>
                 </div>
               </div>
 
-              <div>
-                <h4 className="font-bold text-lg mb-4">What's Included:</h4>
-                <ul className="space-y-3">
+              <div className="bg-white rounded-[2rem] p-8 shadow-lg text-slate-900">
+                <h4 className="font-bold text-xl mb-6 text-froyo-dark-blue">Program Highlights</h4>
+                <ul className="space-y-4">
                   {currentTest.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <CheckCircle className="text-green-500 flex-shrink-0 mt-0.5" size={20} />
-                      <span className="text-slate-700">{feature}</span>
+                    <li key={i} className="flex items-start gap-4">
+                      <div className="mt-1 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0">
+                        <CheckCircle size={14} className="text-green-600" />
+                      </div>
+                      <span className="text-slate-600 font-medium">{feature}</span>
                     </li>
                   ))}
                 </ul>
+                <div className="mt-8 pt-8 border-t border-slate-100">
+                  <Link to="/contact?service=test-prep" className="w-full bg-froyo-dark-blue text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors group/btn">
+                    Start Prep
+                    <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* The Process */}
-      <section className="py-16 bg-slate-50">
+      {/* Section 3: The Process (Bento Style) */}
+      <section className="py-20 md:py-32 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <span className="text-froyo-dark-blue font-bold tracking-[0.2em] uppercase text-sm mb-4 block">Our Approach</span>
-            <h2 className="text-3xl md:text-4xl lg:text-[50px] font-heading text-slate-900 mb-6">
-              Diagnostic-Driven Test Prep
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <span className="text-froyo-dark-blue font-bold tracking-widest uppercase mb-4 block">Our Methodology</span>
+            <h2 className="text-4xl md:text-6xl font-heading font-bold mb-6 text-slate-900">Diagnostic-Driven</h2>
+            <p className="text-xl text-slate-600">We don't guess. We test.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 grid-rows-1 md:grid-rows-2 h-auto md:h-[600px]">
+            {/* Large Card */}
+            <div className="md:col-span-1 md:row-span-2 bg-froyo-dark-blue rounded-[2.5rem] p-10 text-white flex flex-col justify-between relative overflow-hidden group min-h-[400px]">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-froyo-light-blue rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
+              <div>
+                <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
+                  <Target className="text-froyo-gold" />
+                </div>
+                <h3 className="text-3xl font-bold mb-4">Initial Diagnostic</h3>
+                <p className="text-slate-300 leading-relaxed">
+                  Every student starts with a full-length practice test to identify specific content gaps and pacing issues.
+                </p>
+              </div>
+              <div className="mt-8">
+                <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
+                  <div className="h-full bg-froyo-gold w-3/4"></div>
+                </div>
+                <div className="flex justify-between text-xs font-bold mt-2 text-froyo-gold uppercase">
+                  <span>Analysis</span>
+                  <span>Strategy</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Medium Card */}
+            <div className="md:col-span-2 bg-white rounded-[2.5rem] p-10 shadow-lg border border-slate-100 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-froyo-gold/10 rounded-full blur-2xl"></div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold mb-4 text-slate-900">Strategic Practice</h3>
+                <p className="text-slate-600">
+                  We focus on high-yield topics and test-taking strategies—like when to guess and how to spot traps.
+                </p>
+              </div>
+              <div className="hidden sm:block w-32 h-32 bg-slate-100 rounded-full flex-shrink-0 flex items-center justify-center">
+                <Target size={40} className="text-froyo-dark-blue" />
+              </div>
+            </div>
+
+            {/* Small Card 1 */}
+            <div className="bg-white rounded-[2.5rem] p-8 shadow-lg border border-slate-100 hover:-translate-y-1 transition-transform">
+              <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                <Clock className="text-green-500" /> Time Management
+              </h3>
+              <p className="text-slate-500 text-sm">Learning to pace effectively under pressure.</p>
+            </div>
+
+            {/* Small Card 2 */}
+            <div className="bg-white rounded-[2.5rem] p-8 shadow-lg border border-slate-100 hover:-translate-y-1 transition-transform">
+              <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                <CheckCircle className="text-froyo-gold" /> Mock Exams
+              </h3>
+              <p className="text-slate-500 text-sm">Simulating test day conditions to reduce anxiety.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section - Full Width Banner */}
+      <section className="py-24 px-4">
+        <div className="max-w-7xl mx-auto bg-gradient-to-r from-froyo-dark-blue to-[#00335c] rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-froyo-light-blue rounded-full blur-[120px] opacity-30"></div>
+
+          <div className="relative z-10 max-w-4xl mx-auto space-y-8">
+            <h2 className="text-4xl md:text-7xl font-heading font-bold text-white tracking-tight">
+              Ready to Score Higher?
             </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Every student's preparation begins with identifying exactly where they need to improve—no wasted time on areas already mastered.
+            <p className="text-2xl text-slate-300 font-light">
+              Schedule your free diagnostic assessment today.
             </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {process.map((item, i) => (
-              <div key={i} className="bg-white rounded-[2rem] p-8 shadow-lg border border-slate-100">
-                <div className={`w-14 h-14 rounded-2xl ${
-                  i === 0 ? 'bg-froyo-light-blue' :
-                  i === 1 ? 'bg-froyo-gold' :
-                  i === 2 ? 'bg-froyo-dark-blue' :
-                  'bg-green-500'
-                } flex items-center justify-center mb-6 shadow-lg`}>
-                  {item.icon}
-                </div>
-                <span className="text-4xl font-heading text-slate-200">{item.step}</span>
-                <h3 className="text-xl font-bold mt-2 mb-3">{item.title}</h3>
-                <p className="text-slate-600">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Summer SAT Intensive */}
-      <section className="py-16 bg-froyo-dark-blue text-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="bg-froyo-gold text-white px-4 py-1 rounded-full text-sm font-bold tracking-widest uppercase mb-4 inline-block">
-                Summer 2025
-              </span>
-              <h2 className="text-3xl md:text-4xl lg:text-[50px] font-heading mb-6">
-                Summer SAT Intensive
-              </h2>
-              <p className="text-xl opacity-90 mb-8">
-                Master the August SAT with our immersive 4-week comprehensive course. Limited to 6 students for maximum attention.
-              </p>
-
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="bg-white/10 rounded-xl p-4">
-                  <Calendar className="text-froyo-gold mb-2" size={24} />
-                  <p className="font-bold">June 30 – July 25</p>
-                  <p className="text-sm opacity-80">Mon, Wed, Fri</p>
-                </div>
-                <div className="bg-white/10 rounded-xl p-4">
-                  <Clock className="text-froyo-gold mb-2" size={24} />
-                  <p className="font-bold">10am – 12pm</p>
-                  <p className="text-sm opacity-80">12 sessions total</p>
-                </div>
-              </div>
-
-              <div className="text-4xl font-heading text-froyo-gold mb-4">$1,200</div>
-              <p className="opacity-80 mb-6">Or 2 payments of $600</p>
-
-              <Link to="/contact?service=summer-sat" className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl hover:scale-105 active:scale-95 inline-block">
-                Reserve Your Spot
+            <div className="flex flex-col sm:flex-row justify-center gap-6 pt-8">
+              <Link to="/contact?service=test-prep" className="bg-froyo-gold text-white px-12 py-5 rounded-full font-bold text-xl hover:bg-white hover:text-froyo-dark-blue transition-all shadow-lg hover:shadow-2xl scale-100 hover:scale-105 active:scale-95 flex items-center justify-center gap-3">
+                Schedule Diagnostic <ArrowRight />
+              </Link>
+              <Link to="/pricing" className="bg-transparent border-2 border-white/30 text-white px-12 py-5 rounded-full font-bold text-xl hover:bg-white/10 transition-all flex items-center justify-center">
+                View Pricing
               </Link>
             </div>
-
-            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
-              <h3 className="text-2xl font-bold mb-6">Program Includes:</h3>
-              <ul className="space-y-4">
-                {[
-                  '36 hours of intensive instruction',
-                  '3 full-length practice tests',
-                  'All materials and workbooks included',
-                  'Diagnostic assessment and score report',
-                  'Weekly progress updates to parents',
-                  'Test-day strategies and preparation'
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3">
-                    <CheckCircle className="text-green-400 flex-shrink-0" size={20} />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Overview */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-heading text-center mb-12">Test Prep Pricing</h2>
-
-          <div className="bg-slate-50 rounded-3xl p-8 md:p-12">
-            <div className="grid md:grid-cols-3 gap-8 mb-8">
-              <div className="text-center">
-                <p className="text-slate-500 mb-2">60 minutes</p>
-                <p className="text-4xl font-heading text-froyo-dark-blue">$60-100</p>
-                <p className="text-sm text-slate-500">Based on location</p>
-              </div>
-              <div className="text-center border-x border-slate-200">
-                <p className="text-slate-500 mb-2">90 minutes</p>
-                <p className="text-4xl font-heading text-froyo-dark-blue">$80-120</p>
-                <p className="text-sm text-slate-500">Based on location</p>
-              </div>
-              <div className="text-center">
-                <p className="text-slate-500 mb-2">120 minutes</p>
-                <p className="text-4xl font-heading text-froyo-dark-blue">$100-140</p>
-                <p className="text-sm text-slate-500">Based on location</p>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <Link to="/pricing" className="inline-flex items-center gap-2 text-froyo-dark-blue font-bold hover:underline">
-                View Full Pricing Details
-                <ArrowRight size={18} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-16 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-heading text-center mb-12">Test Prep FAQ</h2>
-          <div className="space-y-4">
-            {[
-              { q: "How long before the test should I start prep?", a: "Ideally, start 3-6 months before your test date for comprehensive preparation. Intensive programs can be effective with 4-8 weeks of focused study." },
-              { q: "How much can I expect my score to improve?", a: "Score improvement varies by student, but with consistent effort, most students see 100-200+ point improvements on the SAT. The diagnostic assessment helps set realistic goals." },
-              { q: "Do you provide practice materials?", a: "Yes, all necessary materials are included—official practice tests, workbooks, and supplementary resources. No additional purchases required." },
-              { q: "What if I need to reschedule a session?", a: "We require 24-hour notice for cancellations. Sessions can be rescheduled based on availability." },
-              { q: "Do you offer group test prep?", a: "The Summer SAT Intensive is a small group program (max 6 students). Individual sessions are also available for personalized attention." }
-            ].map((faq, i) => (
-              <div key={i} className="bg-white rounded-2xl p-6 shadow-sm">
-                <h3 className="font-bold text-lg mb-2">{faq.q}</h3>
-                <p className="text-slate-600">{faq.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-heading mb-6">Start With a Free Diagnostic</h2>
-          <p className="text-xl text-slate-600 mb-8">
-            Schedule a free diagnostic assessment to identify your starting point and create a personalized test prep plan.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact?service=test-prep" className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl shadow-froyo-gold/20 hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
-              <MessageCircle size={20} />
-              Schedule Free Diagnostic
-            </Link>
-            <Link to="/" className="bg-white text-froyo-dark-blue px-8 py-4 rounded-full font-bold text-lg border-2 border-froyo-dark-blue hover:bg-froyo-dark-blue hover:text-white transition-all flex items-center justify-center gap-2">
-              Back to Home
-              <ArrowRight size={20} />
-            </Link>
           </div>
         </div>
       </section>
