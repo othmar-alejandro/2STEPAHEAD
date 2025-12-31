@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { createRoot } from 'react-dom/client';
 import {
   ChevronDown,
-  Menu,
-  X,
   CheckCircle,
   BookOpen,
   GraduationCap,
@@ -12,94 +9,11 @@ import {
   Clock,
   MapPin,
   ArrowRight,
-  Monitor,
   Calendar,
   CreditCard,
   Search,
-  MessageCircle,
-  Phone,
-  Mail
+  MessageCircle
 } from 'lucide-react';
-
-// --- Types ---
-interface Testimonial {
-  quote: string;
-  author: string;
-  role: string;
-  image: string;
-}
-
-// --- Components ---
-
-// Updated Navbar
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [visible, setVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      // Check if scrolled past threshold
-      setScrolled(currentScrollY > 50);
-
-      // Show navbar when scrolling up, hide when scrolling down
-      if (currentScrollY < lastScrollY || currentScrollY < 100) {
-        setVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setVisible(false);
-      }
-
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
-
-  return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${visible ? 'translate-y-0' : '-translate-y-full'} ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
-      <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-        <a href="#" className="flex items-center gap-2 group">
-          <img src="/2stepsaheadlogo.png" alt="2 Step Ahead" className="w-32 h-32 object-contain group-hover:scale-105 transition-transform" />
-        </a>
-
-        {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-8 font-medium text-slate-600">
-          <a href="#home" className="hover:text-froyo-dark-blue transition-colors">Home</a>
-          <a href="#sat" className="hover:text-froyo-dark-blue transition-colors">SAT & Prep</a>
-          <a href="#pricing" className="hover:text-froyo-dark-blue transition-colors">Tutoring</a>
-          <a href="#resources" className="hover:text-froyo-dark-blue transition-colors">Resources</a>
-          <button className="bg-froyo-dark-blue text-white px-6 py-2.5 rounded-full hover:bg-slate-800 transition-all shadow-lg flex items-center gap-2">
-            <MessageCircle size={18} />
-            Schedule Assessment
-          </button>
-        </div>
-
-        {/* Mobile Toggle */}
-        <button className="lg:hidden text-slate-800" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-2xl p-6 flex flex-col gap-4 border-t border-slate-100">
-          <a href="#home" onClick={() => setIsOpen(false)} className="text-lg font-semibold">Home</a>
-          <a href="#sat" onClick={() => setIsOpen(false)} className="text-lg font-semibold">SAT & Prep</a>
-          <a href="#pricing" onClick={() => setIsOpen(false)} className="text-lg font-semibold">Tutoring</a>
-          <a href="#resources" onClick={() => setIsOpen(false)} className="text-lg font-semibold">Resources</a>
-          <button className="bg-froyo-dark-blue text-white py-4 rounded-xl font-bold flex justify-center items-center gap-2">
-            <MessageCircle size={20} />
-            Schedule Assessment
-          </button>
-        </div>
-      )}
-    </nav>
-  );
-};
 
 const Hero = () => {
   return (
@@ -731,7 +645,6 @@ const FAQ = () => {
 };
 
 const Testimonials = () => {
-  // Static data for demonstration
   const testimonials = [
     {
       name: "Christine Jackson",
@@ -744,7 +657,7 @@ const Testimonials = () => {
       handle: "pendulous_ukulele_30",
       image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
       quote: "Finally found a tutor who understands ADHD. They teach my son how to organize his brain, not just the subject.",
-      active: true // Conceptually active
+      active: true
     },
     {
       name: "Sakura Palastri",
@@ -815,10 +728,6 @@ const Testimonials = () => {
   );
 };
 
-const Resources = () => {
-  return null; // Moved to Footer
-};
-
 const Contact = () => {
   return (
     <section id="contact" className="py-24 bg-slate-900 text-white">
@@ -846,8 +755,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-lg text-froyo-gold uppercase tracking-widest text-sm">Contact Us</h4>
-                  <p className="text-xl">(305) 555-0123</p>
-                  <p className="opacity-70">info@2stepahead.com</p>
+                  <p className="text-xl">786-282-9626</p>
+                  <p className="opacity-70">2satutoring@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -897,74 +806,9 @@ const Contact = () => {
   );
 };
 
-const Footer = () => {
-  const resourceLinks = [
-    { name: "AP Study Guides", href: "#" },
-    { name: "SAT Practice Tests", href: "#" },
-    { name: "Pomodoro Timer", href: "#" },
-    { name: "Cornell Note Taking", href: "#" }
-  ];
-
-  return (
-    <footer className="bg-slate-900 text-slate-400 py-16 border-t border-slate-800 mt-0">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-12 mb-16 border-b border-slate-800 pb-12">
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-3 mb-6">
-              <img src="/2stepsaheadlogo.png" alt="2 Step Ahead" className="w-32 h-32 object-contain bg-slate-800 rounded-lg p-1" />
-              <span className="text-2xl font-heading text-white">2 Step Ahead</span>
-            </div>
-            <p className="max-w-sm mb-6 opacity-80">
-              Empowering students to achieve their full potential through personalized tutoring and mentorship in South Florida.
-            </p>
-            <div className="flex gap-4">
-              {/* Social placeholders */}
-              <div className="w-10 h-10 bg-slate-800 rounded-full hover:bg-froyo-gold transition-colors cursor-pointer"></div>
-              <div className="w-10 h-10 bg-slate-800 rounded-full hover:bg-froyo-gold transition-colors cursor-pointer"></div>
-              <div className="w-10 h-10 bg-slate-800 rounded-full hover:bg-froyo-gold transition-colors cursor-pointer"></div>
-            </div>
-          </div>
-
-          <div>
-            <h4 className="text-white font-bold text-lg mb-6">Free Resources</h4>
-            <ul className="space-y-4">
-              {resourceLinks.map((link, i) => (
-                <li key={i}>
-                  <a href={link.href} className="hover:text-froyo-gold transition-colors flex items-center gap-2 text-sm">
-                    <ArrowRight size={14} /> {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-bold text-lg mb-6">Company</h4>
-            <ul className="space-y-4 text-sm">
-              <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-          <p>© 2025 2 Step Ahead Tutoring. All rights reserved.</p>
-          <div className="flex gap-8">
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-};
-
-const App = () => {
+const Home = () => {
   return (
     <div className="antialiased">
-      <Navbar />
       <Hero />
       <ProblemSolution />
       <StickyPrograms />
@@ -974,10 +818,8 @@ const App = () => {
       <Testimonials />
       <FAQ />
       <Contact />
-      <Footer />
     </div>
   );
 };
 
-const root = createRoot(document.getElementById('root')!);
-root.render(<App />);
+export default Home;
