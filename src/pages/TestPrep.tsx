@@ -99,10 +99,10 @@ const TestPrep = () => {
                 Diagnostic-driven test prep that identifies weak areas, builds targeted skills, and develops strategies for maximum score improvement.
               </p>
               <div className="flex flex-wrap gap-4">
-                <button className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl hover:scale-105 active:scale-95 flex items-center gap-2">
+                <Link to="/contact?service=test-prep" className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl hover:scale-105 active:scale-95 flex items-center gap-2">
                   <MessageCircle size={20} />
                   Schedule Free Diagnostic
-                </button>
+                </Link>
                 <Link to="/pricing" className="bg-white/20 backdrop-blur-md text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/30 transition-all flex items-center gap-2">
                   View Pricing
                   <ArrowRight size={20} />
@@ -253,9 +253,9 @@ const TestPrep = () => {
               <div className="text-4xl font-heading text-froyo-gold mb-4">$1,200</div>
               <p className="opacity-80 mb-6">Or 2 payments of $600</p>
 
-              <button className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl hover:scale-105 active:scale-95">
+              <Link to="/contact?service=summer-sat" className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl hover:scale-105 active:scale-95 inline-block">
                 Reserve Your Spot
-              </button>
+              </Link>
             </div>
 
             <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
@@ -343,10 +343,10 @@ const TestPrep = () => {
             Schedule a free diagnostic assessment to identify your starting point and create a personalized test prep plan.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl shadow-froyo-gold/20 hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+            <Link to="/contact?service=test-prep" className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl shadow-froyo-gold/20 hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
               <MessageCircle size={20} />
               Schedule Free Diagnostic
-            </button>
+            </Link>
             <Link to="/" className="bg-white text-froyo-dark-blue px-8 py-4 rounded-full font-bold text-lg border-2 border-froyo-dark-blue hover:bg-froyo-dark-blue hover:text-white transition-all flex items-center justify-center gap-2">
               Back to Home
               <ArrowRight size={20} />

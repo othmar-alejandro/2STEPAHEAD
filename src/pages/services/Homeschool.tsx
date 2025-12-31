@@ -60,10 +60,10 @@ const Homeschool = () => {
                 Comprehensive support for Florida homeschool families, including state-compliant annual evaluations, curriculum consulting, and one-on-one subject tutoring.
               </p>
               <div className="flex flex-wrap gap-4">
-                <button className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl hover:scale-105 active:scale-95 flex items-center gap-2">
+                <Link to="/contact?service=LHomeschool" className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl hover:scale-105 active:scale-95 flex items-center gap-2">
                   <MessageCircle size={20} />
                   Schedule Evaluation
-                </button>
+                </Link>
                 <Link to="/pricing" className="bg-white/20 backdrop-blur-md text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/30 transition-all flex items-center gap-2">
                   View Pricing
                   <ArrowRight size={20} />
@@ -307,10 +307,10 @@ const Homeschool = () => {
             Contact us to schedule your annual evaluation or discuss how we can support your homeschool journey.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl shadow-froyo-gold/20 hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+            <Link to="/contact" className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl shadow-froyo-gold/20 hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
               <MessageCircle size={20} />
               Schedule Evaluation
-            </button>
+            </Link>
             <Link to="/" className="bg-white text-froyo-dark-blue px-8 py-4 rounded-full font-bold text-lg border-2 border-froyo-dark-blue hover:bg-froyo-dark-blue hover:text-white transition-all flex items-center justify-center gap-2">
               Back to Home
               <ArrowRight size={20} />

@@ -179,9 +179,9 @@ const Pricing = () => {
                 ${currentPrice}
               </div>
               <p className="text-slate-500">per {duration}-minute session</p>
-              <button className="mt-6 bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl shadow-froyo-gold/20 hover:scale-105 active:scale-95">
+              <Link to="/contact?referrer=pricing" className="mt-6 bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl shadow-froyo-gold/20 hover:scale-105 active:scale-95 inline-block text-center">
                 Schedule Free Assessment
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -331,10 +331,10 @@ const Pricing = () => {
             Schedule a free consultation to discuss your child's needs and find the right learning plan.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl shadow-froyo-gold/20 hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+            <Link to="/contact?referrer=pricing" className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl shadow-froyo-gold/20 hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
               <MessageCircle size={20} />
               Schedule Free Assessment
-            </button>
+            </Link>
             <Link to="/" className="bg-white text-froyo-dark-blue px-8 py-4 rounded-full font-bold text-lg border-2 border-froyo-dark-blue hover:bg-froyo-dark-blue hover:text-white transition-all flex items-center justify-center gap-2">
               Back to Home
               <ArrowRight size={20} />

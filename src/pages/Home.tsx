@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import {
   ChevronDown,
   CheckCircle,
@@ -45,9 +46,9 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-wrap items-center gap-6">
-              <button className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl shadow-froyo-gold/20 hover:scale-105 active:scale-95">
+              <Link to="/contact" className="bg-froyo-gold text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-400 transition-all shadow-xl shadow-froyo-gold/20 hover:scale-105 active:scale-95 inline-block">
                 Schedule Free Assessment
-              </button>
+              </Link>
               <div className="flex -space-x-4">
                 {[1, 2, 3, 4].map((i) => (
                   <div key={i} className="w-12 h-12 rounded-full border-4 border-white overflow-hidden bg-slate-200">
@@ -150,10 +151,10 @@ const Hero = () => {
                 <option>Pre-K</option>
               </select>
             </div>
-            <button className="bg-froyo-dark-blue text-white font-bold py-3.5 px-6 rounded-xl hover:bg-slate-800 transition-all shadow-lg h-[54px] flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98]">
+            <Link to="/contact" className="bg-froyo-dark-blue text-white font-bold py-3.5 px-6 rounded-xl hover:bg-slate-800 transition-all shadow-lg h-[54px] flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98]">
               <MessageCircle size={20} />
               Get Started
-            </button>
+            </Link>
           </form>
         </div>
       </div>
@@ -212,25 +213,29 @@ const StickyPrograms = () => {
       title: "K-12 Tutoring",
       desc: "Comprehensive support in Math, Reading, Science, and Social Studies. Beyond homework completion, sessions focus on strengthening foundational skills for long-term academic success.",
       image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80",
-      features: ["Diagnostic Assessment", "Customized Learning Plans", "Progress Monitoring"]
+      features: ["Diagnostic Assessment", "Customized Learning Plans", "Progress Monitoring"],
+      link: "/services/high-school"
     },
     {
       title: "Homeschool Support",
       desc: "Curriculum design, portfolio management, and annual evaluation services for homeschooling families in South Florida. Ensure compliance while maintaining educational excellence.",
       image: "/homeschool-support.png",
-      features: ["Curriculum Planning", "Portfolio Review", "State-Compliant Evaluations"]
+      features: ["Curriculum Planning", "Portfolio Review", "State-Compliant Evaluations"],
+      link: "/services/homeschool"
     },
     {
       title: "Test Prep (SAT/ACT/CLT)",
       desc: "Diagnostic-driven SAT and ACT preparation. Your student's baseline is evaluated, weak areas are identified, and targeted strategies are provided to improve scores efficiently.",
       image: "https://images.unsplash.com/photo-1543269664-7eef42226a21?auto=format&fit=crop&w=600&q=80",
-      features: ["Diagnostic Testing", "Targeted Practice", "Strategy Development"]
+      features: ["Diagnostic Testing", "Targeted Practice", "Strategy Development"],
+      link: "/services/high-school"
     },
     {
       title: "ADHD & Learning Support",
       desc: "Specialized instruction for students with ADHD, Autism, and gifted learners. Strategies are designed to work with each student's strengths while building skills to overcome challenges.",
       image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=600&q=80",
-      features: ["Strength-Based Methods", "Focus & Organization Skills", "Individualized Pacing"]
+      features: ["Strength-Based Methods", "Focus & Organization Skills", "Individualized Pacing"],
+      link: "/services/special-needs"
     }
   ];
 
@@ -325,10 +330,10 @@ const StickyPrograms = () => {
                     ))}
                   </ul>
 
-                  <button className="w-full bg-slate-900 text-white font-bold py-4 rounded-xl hover:bg-froyo-dark-blue transition-colors flex items-center justify-center gap-2 group/btn">
+                  <Link to={s.link} className="w-full bg-slate-900 text-white font-bold py-4 rounded-xl hover:bg-froyo-dark-blue transition-colors flex items-center justify-center gap-2 group/btn">
                     Learn More
                     <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -340,6 +345,25 @@ const StickyPrograms = () => {
 };
 
 const SummerSAT = () => {
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      plan: formData.get('sat-plan'),
+      studentName: formData.get('student-name'),
+      email: formData.get('email'),
+      phone: formData.get('phone')
+    };
+
+    // Store form data in localStorage for the payment page
+    localStorage.setItem('summerSATEnrollment', JSON.stringify(data));
+
+    // Redirect to payment page
+    window.location.href = '/payment';
+  };
+
   return (
     <section id="sat" className="py-24 bg-froyo-dark-blue text-white overflow-hidden relative">
       <div className="absolute top-0 right-0 w-96 h-96 bg-froyo-light-blue rounded-full filter blur-[120px] opacity-20 -mr-48 -mt-48"></div>
@@ -396,21 +420,21 @@ const SummerSAT = () => {
           </div>
 
           <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200">
-            <h3 className="text-2xl font-bold mb-6">Secure Your Student's Seat</h3>
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+            <h3 className="text-2xl font-bold mb-6">Reserve Your Spot</h3>
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="grid grid-cols-2 gap-4">
                 <div className="col-span-2">
                   <label className="block text-sm font-bold text-slate-700 mb-1">Select Plan</label>
                   <div className="space-y-3">
                     <label className="flex items-center gap-3 p-4 bg-white border-2 border-froyo-dark-blue rounded-xl cursor-pointer">
-                      <input type="radio" name="sat-plan" defaultChecked className="w-5 h-5 accent-froyo-dark-blue" />
+                      <input type="radio" name="sat-plan" value="full-payment" defaultChecked className="w-5 h-5 accent-froyo-dark-blue" />
                       <div className="flex justify-between w-full items-center">
                         <span className="font-bold">Pay in Full</span>
                         <span className="text-froyo-dark-blue font-bold">$1,200</span>
                       </div>
                     </label>
                     <label className="flex items-center gap-3 p-4 bg-white border-2 border-slate-200 rounded-xl cursor-pointer hover:border-slate-300 transition-colors">
-                      <input type="radio" name="sat-plan" className="w-5 h-5 accent-froyo-dark-blue" />
+                      <input type="radio" name="sat-plan" value="payment-plan" className="w-5 h-5 accent-froyo-dark-blue" />
                       <div className="flex justify-between w-full items-center">
                         <span className="font-bold">Payment Plan</span>
                         <span className="text-slate-500 font-bold">2 x $600</span>
@@ -419,25 +443,19 @@ const SummerSAT = () => {
                   </div>
                 </div>
                 <div className="col-span-2">
-                  <input type="text" placeholder="Student's Full Name" className="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-froyo-dark-blue outline-none" />
+                  <input type="text" name="student-name" placeholder="Student's Full Name" required className="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-froyo-dark-blue outline-none" />
                 </div>
                 <div>
-                  <input type="email" placeholder="Parent Email" className="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-froyo-dark-blue outline-none" />
+                  <input type="email" name="email" placeholder="Parent Email" required className="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-froyo-dark-blue outline-none" />
                 </div>
                 <div>
-                  <input type="tel" placeholder="Phone Number" className="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-froyo-dark-blue outline-none" />
-                </div>
-                <div className="col-span-2">
-                  <div className="relative">
-                    <CreditCard className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
-                    <input type="text" placeholder="Card Information" className="w-full p-4 pl-12 rounded-xl border border-slate-300 focus:ring-2 focus:ring-froyo-dark-blue outline-none" />
-                  </div>
+                  <input type="tel" name="phone" placeholder="Phone Number" required className="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-froyo-dark-blue outline-none" />
                 </div>
               </div>
-              <button className="w-full bg-froyo-dark-blue text-white py-5 rounded-xl font-bold text-lg hover:bg-slate-800 transition-colors mt-4 flex items-center justify-center gap-2">
-                Enroll Now - Secure Checkout <ArrowRight size={20} />
+              <button type="submit" className="w-full bg-froyo-gold text-white py-5 rounded-xl font-bold text-lg hover:bg-orange-400 transition-colors mt-4 flex items-center justify-center gap-2 shadow-xl">
+                Continue to Payment <ArrowRight size={20} />
               </button>
-              <p className="text-center text-xs text-slate-500">Payments secured via Stripe. Seats are non-refundable after June 15th.</p>
+              <p className="text-center text-xs text-slate-500">After submitting, you'll be redirected to complete your payment and secure your spot.</p>
             </form>
           </div>
         </div>
@@ -599,9 +617,9 @@ const Pricing = () => {
                   </div>
                 ))}
               </div>
-              <button className={`w-full py-4 rounded-xl font-bold transition-all ${tier.name.includes("Full") ? "bg-white text-froyo-dark-blue hover:bg-froyo-gold" : "bg-froyo-dark-blue text-white hover:bg-slate-800"}`}>
+              <Link to={`/contact?plan=${tier.name.toLowerCase().replace(/ /g, '-')}`} className={`w-full py-4 rounded-xl font-bold transition-all flex items-center justify-center ${tier.name.includes("Full") ? "bg-white text-froyo-dark-blue hover:bg-froyo-gold" : "bg-froyo-dark-blue text-white hover:bg-slate-800"}`}>
                 Choose Plan
-              </button>
+              </Link>
             </div>
           ))}
         </div>
@@ -795,9 +813,9 @@ const Contact = () => {
                 <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Primary Goal</label>
                 <textarea rows={4} placeholder="Tell us what you're looking to achieve..." className="w-full p-4 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white outline-none transition-all"></textarea>
               </div>
-              <button className="w-full bg-froyo-gold text-white py-5 rounded-xl font-bold text-lg hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-froyo-gold/20">
+              <Link to="/contact" className="w-full bg-froyo-gold text-white py-5 rounded-xl font-bold text-lg hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-froyo-gold/20 flex items-center justify-center">
                 Schedule Free Assessment
-              </button>
+              </Link>
             </form>
           </div>
         </div>
