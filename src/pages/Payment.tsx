@@ -69,7 +69,7 @@ const Payment = () => {
             Complete Your Enrollment
           </h1>
           <p className="text-xl text-slate-600">
-            Summer SAT Intensive 2025
+            Summer SAT Intensive 2026
           </p>
         </div>
 

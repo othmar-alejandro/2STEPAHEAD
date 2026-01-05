@@ -370,7 +370,7 @@ const SummerSAT = () => {
 
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="bg-froyo-gold text-white px-4 py-1 rounded-full text-sm font-bold tracking-widest uppercase mb-4 inline-block">Exclusive Summer 2025</span>
+          <span className="bg-froyo-gold text-white px-4 py-1 rounded-full text-sm font-bold tracking-widest uppercase mb-4 inline-block">Exclusive Summer 2026</span>
           <h2 className="text-4xl md:text-5xl lg:text-[60px] mb-6">Summer SAT Intensive</h2>
           <p className="text-xl opacity-80 max-w-2xl mx-auto">Master the August SAT with our immersive 4-week comprehensive course. Limited seats available.</p>
         </div>
